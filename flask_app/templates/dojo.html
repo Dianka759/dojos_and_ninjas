@@ -25,11 +25,11 @@
         <div class="border border-danger p-4">
 
 
-            {% for dojo in dojos %}
-            <a href="/dojo/{{ dojo.id }}">{{ dojo.name }}</a>
+            {% for dojo in all_dojos %}
+            <a href="/show_dojo/{{dojo.id}}">{{ dojo.name }}</a>
             <br>
             {% endfor %}
-            <form action="/new_ninja">
+            <form action="/ninjas">
             <button>Add Ninja</button>
         </form>
         </div>

@@ -1,6 +1,7 @@
 from flask import render_template,redirect,request
 from flask_app import app
 from flask_app.models.dojo import Dojo
+from flask_app.models.ninja import Ninja
 
 
 @app.route('/')
@@ -9,12 +10,26 @@ def index():
 
 @app.route("/dojos")
 def dojos():
-    dojos = Dojo.get_dojos()
-    return render_template("dojo.html", dojos = dojos)
+    dojos = Dojo.get_all()
+    return render_template("dojo.html", all_dojos = dojos)
 
+@app.route('/create_dojo', methods=["POST"])
+def create_dojo():
+    data = {
+        "name": request.form["name"],
+    }
+    Dojo.save(data)
+    return redirect("/")
 
+@app.route("/show_dojo/<int:id>")
+def show_dojo(id):
+    data = {
+        "id":id
+    }
+    dojo = Dojo.dojo_with_ninjas(data)
+    return render_template("dojo_show.html", dojo=dojo)
 
-@app.route("/new_ninja")
+@app.route("/ninjas")
 def new_ninja():
     dojos = Dojo.get_all()
     return render_template("new_ninja.html", dojos=dojos)
@@ -22,31 +37,17 @@ def new_ninja():
 @app.route('/create_ninja', methods=["POST"])
 def create_ninja():    
     data = {
+        "dojo_id":request.form['dojo_id'],
         "first_name":request.form['first_name'],
         "last_name": request.form['last_name'],
         "age": request.form['age'],
     }
-    Dojo.save_ninja(data)
-    return redirect('/show_dojo/{{ dojo.id }}')
-
-@app.route("/show_dojo/<int:dojo_id>")
-def show_dojo(dojo_id):
-    data = {
-        "id":dojo_id
-    }
-    dojo = Dojo.get_one(data)
-    return render_template("dojo_show.html", dojo=dojo)
+    Ninja.save(data)
+    return redirect('/')
 
 
 
 
-@app.route('/create_dojo', methods=["POST"])
-def create_dojo():
-    data = {
-        "name": request.form["name"],
-    }
-    Dojo.save_dojo(data)
-    return redirect("/")
 
 
 # @app.route("/delete/<int:id>")
