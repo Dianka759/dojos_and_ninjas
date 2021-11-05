@@ -42,18 +42,17 @@ def create_ninja():
         "last_name": request.form['last_name'],
         "age": request.form['age'],
     }
+    dojo_id =  request.form['dojo_id']
     Ninja.save(data)
-    return redirect('/')
-
-
+    return redirect(f"/show_dojo/{dojo_id}")
 
 
 # @app.route("/delete/<int:id>")
-# def delete_user(id):
+# def delete_dojo(id):
 #     data = {
 #         "id":id
 #     }
-#     User.delete_user(data)
+#     Dojo.delete_dojo(data)
 #     return redirect("/")
 
 
