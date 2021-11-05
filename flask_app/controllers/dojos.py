@@ -48,8 +48,6 @@ def create_ninja():
 
 
 
-
-
 # @app.route("/delete/<int:id>")
 # def delete_user(id):
 #     data = {

@@ -14,23 +14,21 @@
     <div
         class="container shadow mt-3 border border-primary rounded p-4 bg-dark text-light d-flex justify-content-evenly">
         <div class="border border-danger p-4">
-            <h1>New Dojo</h1>
+            <h1 class="mb-4">New Dojo</h1>
             <form action="/create_dojo" method="POST">
             <label for="name">Name:</label>
             <input name="name" type="text">
-            <button>CREATE</button>
+            <button class="btn btn-outline-danger">Create</button>
             </form>
         </div>
 
         <div class="border border-danger p-4">
-
-
             {% for dojo in all_dojos %}
             <a href="/show_dojo/{{dojo.id}}">{{ dojo.name }}</a>
             <br>
             {% endfor %}
             <form action="/ninjas">
-            <button>Add Ninja</button>
+            <button class="btn btn-outline-danger mt-3">Add Ninja</button>
         </form>
         </div>
 
