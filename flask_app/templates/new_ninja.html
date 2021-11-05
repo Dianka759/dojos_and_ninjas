@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Create Ninja</title>
+</head>
+
+<body>
+    <div class="container w-50 mt-3 p-4 border border-4 border-dark rounded shadow bg-danger fw-bold">
+        <h1 class="text-center">Add a New Ninja</h1>
+        <form action="/create_ninja" method="POST">
+        <div class="mb-3 mt-3 d-grid">
+        <label for="dojos">Dojos:</label>
+        <select name="dojo_id" class="p-2">
+            <option>Select location</option>
+            {% for dojo in dojos %}
+            <option value={{dojo.id}}>{{dojo.name}}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="mb-3">
+                <label for="name" class="form-label">First Name: </label>
+                <input type="text" name="first_name" placeholder="Your first name here..." class="form-control">
+        </div>
+        <div class="mb-3">
+                <label for="name" class="form-label">Last Name: </label>
+                <input type="text" name="last_name" placeholder="Your last name here..." class="form-control">
+        </div>
+        <div class="mb-3">
+                <label for="name" class="form-label">Age: </label>
+                <input type="text" name="age" placeholder="Your age here..." class="form-control">
+        </div>
+    
+        <div class="d-flex justify-content-between">
+            <a href="/" class="btn btn-outline-dark">Home</a>
+            <button class="btn btn-outline-dark">Submit</button> 
+        </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
